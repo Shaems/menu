@@ -35,5 +35,8 @@ export class ProductsPage implements OnInit {
   addNewPedido() {
     this.router.navigate(['/pedido']);
   }
+  GoToCarrito() {
+    this.router.navigate(['/carrito']);
+  }
 
 }

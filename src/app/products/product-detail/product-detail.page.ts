@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
+import { CarritoService } from '../carrito.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,9 +12,10 @@ import { ProductsService } from '../products.service';
 })
 export class ProductDetailPage implements OnInit {
 
-  product: Product
+  product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private productsService: ProductsService, private router: Router, private alertCtrl: AlertController) { }
+
+  constructor(private activatedRoute: ActivatedRoute, private carrito: CarritoService, private productsService: ProductsService, private router: Router, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paranMap => {
@@ -48,4 +50,10 @@ export class ProductDetailPage implements OnInit {
   }
 // llama al servicio deletePlace, y elimina de ese place la id
 //Le decimos a que ruta queremos que nos redirija
+
+
+addToCarrito(product){
+  this.carrito.addProduct(this.product);
+  window.alert("product add to carrito" + this.product.id)
+}
 }

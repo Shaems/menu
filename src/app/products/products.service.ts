@@ -69,4 +69,9 @@ export class ProductsService {
   }
 
 //si cada lugar que estas recoriendo coincide con el id que me mandan no agregarlo a la lista. Este nuevo valor no guardarlo
+
+  editProduct(){
+    
+  }
+
 }

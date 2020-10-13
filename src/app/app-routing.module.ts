@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { NologinGuard } from './guards/nologin.guard';
-
+import { CarritoListComponent } from './componentes/carrito-list/carrito-list.component';
+ 
 const routes: Routes = [
   {
     path: 'home',
@@ -45,6 +46,9 @@ const routes: Routes = [
   //   path: 'pedido',
     // loadChildren: () => import('./places/pedido').then( m => m.PedidoPageModule)
    // },
+   {
+     path: 'carrito', component:CarritoListComponent
+   }
 ];
 
 @NgModule({

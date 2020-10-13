@@ -5,8 +5,8 @@
     </ion-buttons>
     <ion-title>{{product.title}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="deleteProduct()">
-        <ion-icon name="trash"></ion-icon>
+      <ion-button routerLink="/carrito">
+        <ion-icon name="cart"></ion-icon>
       </ion-button>
 <!--evento click ejecuta metodo(ts)-->
     </ion-buttons>
@@ -36,9 +36,10 @@
       <ion-card-title class="ion-text-end">${{product.price}}</ion-card-title>
     </ion-card>
 
-    <ion-button color="primary" (click)="saveNewProduct(title, description,price)">
-      Agregar al pedido
-    </ion-button>
+  <!--cambiar por boton "agregar al carrito-->
+    <ion-button color="secondary" (click)="addToCarrito(product)" class="cart-icon">
+         Agregar al carrito
+  </ion-button>
 
     <ion-row>
       <ion-col>
