@@ -47,7 +47,8 @@ const routes: Routes = [
     // loadChildren: () => import('./places/pedido').then( m => m.PedidoPageModule)
    // },
    {
-     path: 'carrito', component:CarritoListComponent
+     path: 'carrito',
+     loadChildren: () => import('./componentes/carrito-list/carrito-list.module').then( m => m.CarritoListModule)
    }
 ];
 
