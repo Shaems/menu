@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Product } from '../product.model';
-import { ProductsService } from '../products.service';
-import { CarritoService } from '../carrito.service';
+import { CarritoService } from 'src/app/providers/carrito-service/carrito.service';
+import { ProductsService } from 'src/app/providers/products-service/products.service';
+import { Product } from '../../../models/product/product.model';
+
 
 @Component({
   selector: 'app-product-detail',

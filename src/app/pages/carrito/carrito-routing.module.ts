@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CarritoListComponent } from 'src/app/componentes/carrito-list/carrito-list.component';
+import { CarritoListComponent } from 'src/app/components/carrito-list/carrito-list.component';
 
 import { CarritoPage } from './carrito.page';
 

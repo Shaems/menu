@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product.model';
+import { Product } from '../../../models/product/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { ProductsService } from '../products.service';
+import { ProductsService } from 'src/app/providers/products-service/products.service';
 
 
 @Component({
