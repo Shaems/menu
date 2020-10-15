@@ -46,10 +46,11 @@ const routes: Routes = [
   //   path: 'pedido',
     // loadChildren: () => import('./places/pedido').then( m => m.PedidoPageModule)
    // },
-   {
-     path: 'carrito',
-     loadChildren: () => import('./componentes/carrito-list/carrito-list.module').then( m => m.CarritoListModule)
-   }
+  {
+    path: 'carrito',
+    loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
+  }
+
 ];
 
 @NgModule({
