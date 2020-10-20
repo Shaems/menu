@@ -13,7 +13,7 @@ import { Product } from '../../../models/product/product.model';
 })
 export class ProductDetailPage implements OnInit {
 
-  product: Product;
+  product: any = {};
 
 
   constructor(private activatedRoute: ActivatedRoute, private carrito: CarritoService, private productsService: ProductsService, private router: Router, private alertCtrl: AlertController) { }
@@ -22,8 +22,20 @@ export class ProductDetailPage implements OnInit {
     this.activatedRoute.paramMap.subscribe(paranMap => {
       //redirect
       const recipedId = paranMap.get('productId')
-      this.product = this.productsService.getProduct(recipedId);
-    })
+      this.productsService.getProduct(recipedId).subscribe((snap) => {  
+          let p = snap.data();
+          console.log(p)
+          this.product = {
+            title: p.title,
+            imageURL: p.imageURL,
+            detail: p.detail,
+            price: p.price,
+            id: p.uid,
+            comments: []
+          };
+        })
+      });
+
   }
   async deleteProduct() {
 

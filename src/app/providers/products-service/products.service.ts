@@ -1,7 +1,9 @@
 import { getLocalePluralCase } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { FirebaseApp } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product/product.model';
+
 
 
 @Injectable({
@@ -18,44 +20,24 @@ export class ProductsService {
       price: 250,
       comments: ['Awesome place', 'wonderful experience']
     },
-    {
-      id:'2',
-      title:'Eiffel tower 2',
-      imageURL: 'https://www.hola.com/imagenes/viajes/20200325164049/torre-eiffel-paris-maravillas-del-mundo-desde-mi-pantalla/0-803-221/maravillas-desde-mi-pantalla-torre-eiffel-m.jpg',
-      detail: 'milanesa de ternera con',
-      price: 250,
-      comments: ['Awesome place', 'wonderful experience']
-    },
-    {
-      id:'3',
-      title:'Eiffel tower',
-      imageURL: 'https://www.hola.com/imagenes/viajes/20200325164049/torre-eiffel-paris-maravillas-del-mundo-desde-mi-pantalla/0-803-221/maravillas-desde-mi-pantalla-torre-eiffel-m.jpg',
-      detail: 'milanesa de ternera con',
-      price: 250,
-      comments: []
-    },
+
   ]
 
 
   constructor(
     private db: AngularFirestore
-  ) { }
+  ) {
+    
+   }
 
   getProducts() {
  //   return [...this.products]
-      let productos = this.db.collection('products').valueChanges();
-    
-      console.log(productos);
-      return [...this.products];
+    return this.db.collection('products').snapshotChanges();
   }
   //retorna una copia de los lugares
 
   getProduct(productId: string) {
-    return {
-    ...this.products.find(product => {
-      return product.id === productId
-      })
-    }
+    return this.db.collection('products').doc(productId).get();
   }
 // busqueda de Id. recorre. Retorna dentro de un objeto
   addProduct(title: string, imageURL: string, detail: string, price: number) {
@@ -86,7 +68,15 @@ export class ProductsService {
 
 //si cada lugar que estas recoriendo coincide con el id que me mandan no agregarlo a la lista. Este nuevo valor no guardarlo
 
-  editProduct(){
+  editProduct(title: string, imageURL: string, detail: string, price: number) {
+    const uid = this.products.length + 1 + "";
+    this.db.collection('products').doc(uid).update({
+      title,
+      imageURL,
+      detail,
+      price,
+      uid 
+    })
     
   }
 

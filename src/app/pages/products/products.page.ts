@@ -10,18 +10,31 @@ import { ProductsService } from 'src/app/providers/products-service/products.ser
 })
 export class ProductsPage implements OnInit {
 
-  products = []
+  products = [];
   productsService: any;
 
   constructor(private productService: ProductsService, private router: Router) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe((snap) => {
+      // Vacio la lista para empezar de 0
+      this.products = [];
+      // Por cada elemento armo el product para agregar a la lista
+      snap.forEach((productData: any) => {
+        let pD = productData.payload.doc
+        this.products.push({
+          id: pD.id,
+          title: pD.data().title,
+          price: pD.data().price,
+          imageURL: pD.data().imageURL,
+        });
+      })
+    });
   }
 // this.products tendra el valor que me traen del servicio
 
   ionViewWillEnter () {
-    this.products = this.productService.getProducts();
+    this.ngOnInit();
   }
   // Vuelve a pintar el inicio
 
