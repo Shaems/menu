@@ -22,7 +22,7 @@ export class NologinGuard implements CanActivate {
           
           return true;
         }else{
-          this.router.navigate(['home']);
+          this.router.navigate(['products']);
           return false;
         }
       //  console.log(auth)

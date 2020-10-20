@@ -1,5 +1,6 @@
 import { getLocalePluralCase } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product/product.model';
 
 
@@ -36,10 +37,16 @@ export class ProductsService {
   ]
 
 
-  constructor() { }
+  constructor(
+    private db: AngularFirestore
+  ) { }
 
   getProducts() {
-    return [...this.products]
+ //   return [...this.products]
+      let productos = this.db.collection('products').valueChanges();
+    
+      console.log(productos);
+      return [...this.products];
   }
   //retorna una copia de los lugares
 
@@ -52,6 +59,14 @@ export class ProductsService {
   }
 // busqueda de Id. recorre. Retorna dentro de un objeto
   addProduct(title: string, imageURL: string, detail: string, price: number) {
+    const uid = this.products.length + 1 + "";
+    this.db.collection('products').doc(uid).set({
+      title,
+      imageURL,
+      detail,
+      price,
+      uid 
+    })
     this.products.push({
       title,
       imageURL,

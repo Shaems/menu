@@ -21,11 +21,13 @@ const routes: Routes = [
     children: [
       {
         path:"",
-        loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
+        loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule),
+        canActivate : [AuthGuard]
       },
       {
         path: ":productId",
-        loadChildren: () => import('./pages/products/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
+        loadChildren: () => import('./pages/products/product-detail/product-detail.module').then( m => m.ProductDetailPageModule),
+        canActivate : [AuthGuard]
       }
     ]
   },
