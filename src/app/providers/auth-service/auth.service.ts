@@ -31,14 +31,17 @@ export class AuthService {
     });
   }
 
-  register(email: string, password: string, name: string){
+  register(email: string, password: string, name: string, lastname: string, username: string, wp: number){
 
     return new Promise ((resolve, reject) => 
       this.AFauth.createUserWithEmailAndPassword(email, password).then( res =>{
         const uid = res.user.uid
         this.db.collection("users").doc(uid).set({
-          name : name,
-          uid : uid 
+          name: name,
+          lastname: lastname,
+          uid: uid,
+          username: username,
+          wp: wp,
         })
         resolve(res)
       }).catch(err => reject(err))

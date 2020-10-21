@@ -41,13 +41,11 @@ export class ProductsService {
   }
 // busqueda de Id. recorre. Retorna dentro de un objeto
   addProduct(title: string, imageURL: string, detail: string, price: number) {
-    const uid = this.products.length + 1 + "";
-    this.db.collection('products').doc(uid).set({
+    this.db.collection('products').add({
       title,
       imageURL,
       detail,
       price,
-      uid 
     })
     this.products.push({
       title,
