@@ -18,6 +18,7 @@ export class RegistroPage implements OnInit {
   public username: string;
 
   public validPassword: boolean = true;
+  public validWP: boolean = true;
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -35,8 +36,8 @@ export class RegistroPage implements OnInit {
 
   formValid(): boolean {
     this.validPassword = this.password && this.password.length > 6;
-    let validWP = this.wp && (this.wp+"").length > 10;
-    return this.validPassword && validWP;
+    this.validWP = this.wp && (this.wp+"").length >= 10;
+    return this.validPassword && this.validWP;
   }
 
 }

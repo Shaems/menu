@@ -44,15 +44,25 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
- // {
-  //   path: 'pedido',
-    // loadChildren: () => import('./places/pedido').then( m => m.PedidoPageModule)
-   // },
   {
     path: 'carrito',
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
-  }
-
+  },
+  {
+    path: 'profile',
+    children: [
+      {
+        path:"",
+        loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+        canActivate : [AuthGuard]
+      },
+      {
+        path: "products",
+        loadChildren: () => import('./pages/profile/products/products.module').then( m => m.ProductsPageModule),
+        canActivate : [AuthGuard]
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot='start'>
-      <ion-back-button defaultHref="/products"> </ion-back-button>
+      <ion-back-button defaultHref="profile/products"> </ion-back-button>
     </ion-buttons>
-    <ion-title>Editar producto</ion-title>
+    <ion-title>Añadir nuevo producto</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
   <ion-row>
@@ -17,7 +18,7 @@
           <ion-input type="text" placeholder="Detail" #detail></ion-input>
           <ion-input type="number" placeholder="Precio" #price></ion-input>
           <ion-button color="primary" (click)="saveNewProduct(title, imageURL, detail, price)">
-            Modificar
+            Crear
           </ion-button>
         </ion-card-content>
       </ion-card>

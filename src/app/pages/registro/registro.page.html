@@ -23,6 +23,7 @@
     <ion-label position="floating">Nro de WhatsApp</ion-label>
     <ion-input type="number" [(ngModel)]="wp" name="wp"></ion-input>
   </ion-item>
+  <ion-label *ngIf='!validWP'>*Debe contener 10 números o +</ion-label>
   <ion-item>
     <ion-label position="floating">Email</ion-label>
     <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
